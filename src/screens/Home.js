@@ -18,33 +18,12 @@ export default function Home({ navigation }) {
   const [state, actions] = userStore();
 
   useEffect(() => {
-    getTodosFromUserDevice();
+    () => actions.getTodosFromUserDevice();
   }, []);
 
   useEffect(() => {
-    saveTodoToUserDevice(state.todos);
+    () => actions.saveTodoToUserDevice(state.todos);
   }, [state.todos]);
-
-  const saveTodoToUserDevice = async (todos) => {
-    try {
-      const stringifyTodos = JSON.stringify(todos);
-
-      await AsyncStorage.setItem("todos", stringifyTodos);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getTodosFromUserDevice = async () => {
-    try {
-      const todos = await AsyncStorage.getItem("todos");
-      if (todos != null) {
-        actions.getTodo(JSON.parse(todos));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <SafeAreaView

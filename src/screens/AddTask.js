@@ -22,13 +22,7 @@ export default function AddTask({ navigation }) {
 
   const [state, actions] = userStore();
 
-  React.useEffect(() => {
-    getTodosFromUserDevice();
-  }, []);
-
-  React.useEffect(() => {
-    saveTodoToUserDevice(state.todos);
-  }, [state.todos]);
+ 
 
   const addTodo = () => {
     if (textInput == "") {
@@ -45,26 +39,7 @@ export default function AddTask({ navigation }) {
     }
   };
 
-  const saveTodoToUserDevice = async (todos) => {
-    try {
-      const stringifyTodos = JSON.stringify(todos);
-
-      await AsyncStorage.setItem("todos", stringifyTodos);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getTodosFromUserDevice = async () => {
-    try {
-      const todos = await AsyncStorage.getItem("todos");
-      if (todos != null) {
-        actions.getTodo(JSON.parse(todos));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+ 
 
   const TimeInput = ({ title, placeholder }) => {
     return (

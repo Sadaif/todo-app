@@ -1,4 +1,5 @@
 import { createStore, createHook } from "react-sweet-state";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Store = createStore({
   initialState: {
@@ -15,12 +16,28 @@ const Store = createStore({
         });
       },
 
-    getTodo:
-      (todo) =>
-      ({ setState }) => {
-        setState({
-          todos: todo,
-        });
+    getTodosFromUserDevice: async ({ setState }) => {
+      try {
+        const todos = await AsyncStorage.getItem("todos");
+        if (todos != null) {
+          setState({
+            todos: JSON.parse(todos),
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    saveTodoToUserDevice:
+      (todos) =>
+      async ({ setState }) => {
+        try {
+          const stringifyTodos = JSON.stringify(todos);
+          await AsyncStorage.setItem("todos", stringifyTodos);
+        } catch (error) {
+          console.log(error);
+        }
       },
 
     deleteTodo:
