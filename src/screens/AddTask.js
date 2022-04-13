@@ -22,8 +22,6 @@ export default function AddTask({ navigation }) {
 
   const [state, actions] = userStore();
 
- 
-
   const addTodo = () => {
     if (textInput == "") {
       Alert.alert("Error", "Please add something in title");
@@ -39,24 +37,13 @@ export default function AddTask({ navigation }) {
     }
   };
 
- 
-
   const TimeInput = ({ title, placeholder }) => {
     return (
       <TouchableOpacity
         onPress={() => Alert.alert("I am sample field :)")}
         style={{ flexDirection: "column" }}
       >
-        <Text
-          style={{
-            fontSize: 15,
-            marginBottom: 10,
-            marginTop: 10,
-            fontWeight: "bold",
-          }}
-        >
-          {title}
-        </Text>
+        <Text style={styles.timeLabel}>{title}</Text>
         <TextInput
           editable={false}
           placeholder={placeholder}
@@ -101,15 +88,7 @@ export default function AddTask({ navigation }) {
       </View>
 
       <View style={styles.inputContainer}>
-        <Text
-          style={{
-            fontSize: 15,
-            marginBottom: 10,
-            fontWeight: "bold",
-          }}
-        >
-          Title
-        </Text>
+        <Text style={styles.label}>Title</Text>
         <TextInput
           value={textInput}
           placeholder="Design team meeting"
@@ -148,6 +127,17 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     paddingHorizontal: 20,
+  },
+  label: {
+    fontSize: 15,
+    marginBottom: 10,
+    fontWeight: "bold",
+  },
+  timeLabel: {
+    fontSize: 15,
+    marginBottom: 10,
+    marginTop: 10,
+    fontWeight: "bold",
   },
   inputContainer: {
     paddingHorizontal: 20,

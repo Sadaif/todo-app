@@ -40,14 +40,12 @@ export default function PendingTask({ todos }) {
 
           <View style={{ flex: 1 }}>
             <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 15,
-                color: COLORS.primary,
-                marginLeft: 10,
-                marginTop: 3,
-                textDecorationLine: todo?.completed ? "line-through" : "none",
-              }}
+              style={[
+                styles.title,
+                {
+                  textDecorationLine: todo?.completed ? "line-through" : "none",
+                },
+              ]}
             >
               {todo?.task}
             </Text>
@@ -75,6 +73,13 @@ export default function PendingTask({ todos }) {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontWeight: "bold",
+    fontSize: 15,
+    color: COLORS.primary,
+    marginLeft: 10,
+    marginTop: 3,
+  },
   listItem: {
     padding: 10,
     backgroundColor: COLORS.white,

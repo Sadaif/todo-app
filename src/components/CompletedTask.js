@@ -41,14 +41,12 @@ export default function CompletedTask({ todos }) {
 
           <View style={{ flex: 1 }}>
             <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 15,
-                color: COLORS.primary,
-                marginLeft: 10,
-                marginTop: 3,
-                textDecorationLine: todo?.completed ? "line-through" : "none",
-              }}
+              style={[
+                styles.title,
+                {
+                  textDecorationLine: todo?.completed ? "line-through" : "none",
+                },
+              ]}
             >
               {todo?.task}
             </Text>
@@ -76,6 +74,13 @@ export default function CompletedTask({ todos }) {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontWeight: "bold",
+    fontSize: 15,
+    color: COLORS.primary,
+    marginLeft: 10,
+    marginTop: 3,
+  },
   listItem: {
     padding: 10,
     backgroundColor: COLORS.white,
@@ -83,7 +88,6 @@ const styles = StyleSheet.create({
     elevation: 12,
     borderRadius: 7,
     marginVertical: 10,
-    
   },
   actionIcon: {
     height: 25,
