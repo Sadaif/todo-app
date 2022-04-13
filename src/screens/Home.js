@@ -1,20 +1,27 @@
-import React from "react";
-import { StyleSheet, SafeAreaView, View, Text, Platform, StatusBar } from "react-native";
+import React, { useEffect } from "react";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Text,
+  Platform,
+  StatusBar,
+} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { userStore } from "../store";
 import FooterButton from "../components/FooterButton";
 import CompletedTask from "../components/CompletedTask";
 import PendingTask from "../components/PendingTask";
- 
+
 export default function Home({ navigation }) {
   const [state, actions] = userStore();
 
-  React.useEffect(() => {
+  useEffect(() => {
     getTodosFromUserDevice();
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     saveTodoToUserDevice(state.todos);
   }, [state.todos]);
 
@@ -51,7 +58,6 @@ export default function Home({ navigation }) {
         hidden={false}
         backgroundColor="white"
         translucent={true}
-        
       />
       <View style={styles.header}>
         <Text

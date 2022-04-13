@@ -7,7 +7,6 @@ import AddTask from "./src/screens/AddTask";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  // console.log("hello world");
   return (
     <NavigationContainer>
       <Stack.Navigator
